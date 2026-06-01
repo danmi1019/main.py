@@ -303,7 +303,7 @@ with tab3:
         x=[r["계절"] for r in results],
         y=[r["Cohen's d"] for r in results],
         marker_color=[SEASON_COLOR[r["계절"]] for r in results],
-        text=[f"{r[\"Cohen's d\"]:+.3f}" for r in results],
+        text=[("{:+.3f}".format(r["Cohen's d"])) for r in results],
         textposition="outside"
     ))
     fig_d.add_hline(y=0.2,  line_dash="dot", line_color="gray",  annotation_text="소(0.2)")
