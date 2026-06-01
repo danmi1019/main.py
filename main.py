@@ -290,11 +290,9 @@ with tab3:
             return "color: #c0392b"
         return ""
 
-    styled = (
-        rdf.style
-           .applymap(highlight_result, subset=["결론"])
-           .format({"p-값": "{:.4f}", "차이 Δ(°C)": "{:+.2f}"})
-    )
+    _style_fn = "map" if hasattr(rdf.style, "map") else "applymap"
+    styled = getattr(rdf.style, _style_fn)(highlight_result, subset=["결론"]) \
+                .format({"p-값": "{:.4f}", "차이 Δ(°C)": "{:+.2f}"})
     st.dataframe(styled, use_container_width=True, hide_index=True)
 
     # 효과 크기 막대 차트
